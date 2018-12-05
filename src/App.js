@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import moment from "moment";
+import format from 'date-fns/format'
+import subMonths from 'date-fns/sub_months'
 import CardGrid from "./components/CardGrid";
 import logo from "./logo.svg";
 import "./App.css";
 
-const currentMonth = moment().format("MMMM");
-const previousMonth = moment()
-  .subtract(1, "months")
-  .format("MMMM");
+const currentMonth = format(new Date(), "MMMM");
+
+const previousMonth = format(subMonths(new Date(), 1), "MMMM");
+
 const BASE_URL = `https://sheets.googleapis.com/v4/spreadsheets`;
 const API = axios.create({
   baseURL: BASE_URL,
@@ -89,7 +90,7 @@ class App extends Component {
       charityData
     } = this.state;
 
-    const today = moment(new Date()).format("DD/MM");
+    const today = format(new Date(), "DD/MM");
 
     const currentDayData = currentRecyclingData.filter(v => {
       let [date] = v;
