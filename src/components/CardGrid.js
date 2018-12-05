@@ -38,65 +38,77 @@ function CardGrid(props) {
 
   const dateFormatted = moment(date, "DD/MM").format("ddd, D MMM");
   const monthName = moment(new Date()).format("MMMM");
-  const amountRaised = props.charityData.amountRaised && props.charityData.amountRaised.reduce((acc, v) => acc + parseFloat(v, 10), 0);
-  return <div className="grid">
-      <Card>
-        {!props.isLoading ? <>
-            <h1>Recycling</h1>
-            <ul className="box__content">
-              <li>
-                {date && <h3>{dateFormatted}</h3>}
-                <p>
-                  {" "}
-                  {`${prevDaycontaminated} of ${prevDaynonContaminated} bags contaminated (${Math.round(
-                    (prevDaycontaminated / prevDaynonContaminated) * 100
-                  )}%)`}{" "}
-                </p>
-              </li>
-              <li>
-                <h3>This month so far</h3>
-                <p>{`${monthContaminated} of ${total} bags contaminated (${Math.round((monthContaminated / total) * 100)}%)`}</p>
-              </li>
-              <li>
-                <h3>Last month</h3>
-                <p>{`${Math.round(prevAvgTotal)}%`} contamination rate</p>
-              </li>
-            </ul>
+  const amountRaised =
+    props.charityData.amountRaised &&
+    props.charityData.amountRaised.reduce(
+      (acc, v) => acc + parseFloat(v, 10),
+      0
+    );
+  return !props.isLoading ? (
+    <>
+      <div className="grid">
+        <Card>
+          <h1>Recycling</h1>
+          <ul className="box__content">
+            <li>
+              {date && <h3>{dateFormatted}</h3>}
+              <p>
+                {" "}
+                {`${prevDaycontaminated} of ${prevDaynonContaminated} bags contaminated (${Math.round(
+                  (prevDaycontaminated / prevDaynonContaminated) * 100
+                )}%)`}{" "}
+              </p>
+            </li>
+            <li>
+              <h3>This month so far</h3>
+              <p>{`${monthContaminated} of ${total} bags contaminated (${Math.round(
+                (monthContaminated / total) * 100
+              )}%)`}</p>
+            </li>
+            <li>
+              <h3>Last month</h3>
+              <p>{`${Math.round(prevAvgTotal)}%`} contamination rate</p>
+            </li>
+          </ul>
 
-            <div className="box__results">
-              <h2>
-                On track to improving? {currengAvgTotal < prevAvgTotal ? <span role="img" aria-label="thumbs up">
-                    👍
-                  </span> : <span role="img" aria-label="thumbs down">
-                    👎
-                  </span>}
-              </h2>
-            </div>
-          </> : "loading..."}
-      </Card>
-      <Card>
-        {!props.isLoading ? <>
-            <h1>Milk bar charity</h1>
-
-            <ul className="box__content">
-              <li>
-                <h3>{monthName} Charity</h3>
-                <p>{props.charityData.name}</p>
-              </li>
-              <li>
-                <h3>About</h3>
-                <p>{props.charityData.summary}</p>
-              </li>
-            </ul>
-
-            <div className="box__results">
-              <h2>
-                Amount raised so far: <span>${amountRaised}</span>
-              </h2>
-            </div>
-          </> : "loading..."}
-      </Card>
-    </div>;
+          <div className="box__results">
+            <h2>
+              On track to improving?{" "}
+              {currengAvgTotal < prevAvgTotal ? (
+                <span role="img" aria-label="thumbs up">
+                  👍
+                </span>
+              ) : (
+                <span role="img" aria-label="thumbs down">
+                  👎
+                </span>
+              )}
+            </h2>
+          </div>
+        </Card>
+        <Card>
+          <h1>Milk bar charity</h1>
+          <ul className="box__content">
+            <li>
+              <h3>{monthName} Charity</h3>
+              <p>{props.charityData.name}</p>
+            </li>
+            <li>
+              <h3>About</h3>
+              <p>{props.charityData.summary}</p>
+            </li>
+          </ul>
+          <div className="box__results">
+            <h2>
+              Amount raised so far: <span>${amountRaised}</span>
+            </h2>
+          </div>
+        </Card>
+      </div>
+    </>
+  ) : (
+    <div class="loading">Loading...</div>
+  );
 }
 
 export default CardGrid;

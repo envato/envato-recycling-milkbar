@@ -105,7 +105,7 @@ class App extends Component {
       todayIndex - 1,
       todayIndex
     );
-    
+
     return (
       <div className="App">
         <CardGrid
