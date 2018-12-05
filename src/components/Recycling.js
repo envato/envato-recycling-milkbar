@@ -12,6 +12,12 @@ const calculateTotalAverage = arr => {
     }, 0);
 };
 
+const mode = (arr) =>
+  arr.reduce(
+    (a, b, i, arr) =>
+      (arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b),
+    null);
+
 function Recycling({ previousDayData, currentRecyclingData, previousRecyclingData }) {
 
   let date, prevDaynonContaminated, prevDaycontaminated;
@@ -28,6 +34,13 @@ function Recycling({ previousDayData, currentRecyclingData, previousRecyclingDat
 
   const currengAvgTotal = calculateTotalAverage(monthRecyclingData);
   const prevAvgTotal = calculateTotalAverage(previousRecyclingData);
+
+  const contaminants = previousRecyclingData.reduce((acc, v) => {
+    acc.push(v[2].trim());
+    return acc;
+  }, []);
+
+  const topContaminant = mode(contaminants);
 
   const [total, monthContaminated] = monthRecyclingData.reduce(function (r, a) {
     a.forEach(function (b, i) {
@@ -58,6 +71,7 @@ function Recycling({ previousDayData, currentRecyclingData, previousRecyclingDat
         <li>
           <h3>Last month</h3>
           <p>{`${Math.round(prevAvgTotal)}%`} contamination rate</p>
+          <p>Top contaminant: <b>{topContaminant}</b></p>
         </li>
       </ul>
 

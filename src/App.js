@@ -41,7 +41,7 @@ class App extends Component {
     } = await API.get(
       `/${
         process.env.REACT_APP_SHEET_ID
-      }/values/recycling:${previousMonth.toLowerCase()}!B5:C?key=${
+      }/values/recycling:${previousMonth.toLowerCase()}!B5:D?key=${
         process.env.REACT_APP_API_KEY
       }`
     );
@@ -89,6 +89,8 @@ class App extends Component {
       previousRecyclingData,
       charityData
     } = this.state;
+
+    console.log(previousRecyclingData);
 
     const today = format(new Date(), "DD/MM");
 
