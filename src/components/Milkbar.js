@@ -11,8 +11,7 @@ function Milkbar({ charityData}) {
       0
     );
 
-  return (
-    <>
+  return <>
       <h1>Milk bar charity</h1>
       <ul className="box__content">
         <li>
@@ -21,7 +20,9 @@ function Milkbar({ charityData}) {
         </li>
         <li>
           <h3>About</h3>
-          <p>{charityData.summary}</p>
+          <div className="box__summary">
+            <p>{charityData.summary}</p>
+          </div>
         </li>
       </ul>
       <div className="box__results">
@@ -29,8 +30,7 @@ function Milkbar({ charityData}) {
           Amount raised so far: <span>${amountRaised}</span>
         </h2>
       </div>
-    </>
-  )
+    </>;
 }
 
 export default Milkbar;
