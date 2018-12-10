@@ -41,7 +41,7 @@ class App extends Component {
     } = await API.get(
       `/${
         process.env.REACT_APP_SHEET_ID
-      }/values/recycling:${previousMonth.toLowerCase()}!B5:D?key=${
+      }/values/recycling:${previousMonth.toLowerCase()}!A5:D?key=${
         process.env.REACT_APP_API_KEY
       }`
     );
@@ -90,8 +90,6 @@ class App extends Component {
       charityData
     } = this.state;
 
-    console.log(previousRecyclingData);
-
     const today = format(new Date(), "DD/MM");
 
     const currentDayData = currentRecyclingData.filter(v => {
@@ -104,10 +102,7 @@ class App extends Component {
       return v === currentDayData[0];
     });
 
-    const [previousDayData] = currentRecyclingData.slice(
-      todayIndex - 1,
-      todayIndex
-    );
+    const [previousDayData] = currentRecyclingData.slice(todayIndex - 2, todayIndex - 1);
 
     return (
       <div className="App">

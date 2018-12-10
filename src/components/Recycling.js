@@ -1,5 +1,6 @@
 import React from 'react'
 import format from 'date-fns/format'
+import parse from 'date-fns/parse'
 
 const calculateTotalAverage = arr => {
   return arr
@@ -18,12 +19,15 @@ const mode = (arr) =>
       (arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b),
     null);
 
-function Recycling({ previousDayData, currentRecyclingData, previousRecyclingData }) {
-
-  let date, prevDaynonContaminated, prevDaycontaminated;
-  if (previousDayData) {
-    [date, prevDaynonContaminated, prevDaycontaminated] = previousDayData;
-  }
+    
+    function Recycling({ previousDayData, currentRecyclingData, previousRecyclingData }) {
+      
+    let date, prevDaynonContaminated, prevDaycontaminated;
+    if (previousDayData) {
+      [date, prevDaynonContaminated, prevDaycontaminated] = previousDayData;
+    }
+      
+    date = parse(date, "dd/mm", new Date());
 
   const monthRecyclingData = currentRecyclingData
     .filter(v => v.length > 1)
@@ -49,7 +53,7 @@ function Recycling({ previousDayData, currentRecyclingData, previousRecyclingDat
     return r;
   }, []);
 
-  const dateFormatted = format(date, "ddd, D MMM");
+  const dateFormatted = format(date, "Do MMMM");
 
   return (
     <>
