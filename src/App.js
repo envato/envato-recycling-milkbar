@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import format from 'date-fns/format'
-import subMonths from 'date-fns/sub_months'
+import subMonths from 'date-fns/subMonths'
 import CardGrid from "./components/CardGrid";
 import logo from "./logo.svg";
 import "./App.css";
