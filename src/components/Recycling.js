@@ -26,9 +26,9 @@ const mode = (arr) =>
     if (previousDayData) {
       [date, prevDaynonContaminated, prevDaycontaminated] = previousDayData;
     }
-      
-    date = parse(date, "dd/mm", new Date());
-
+    
+  date = parse(date, "dd/MM", new Date());
+  
   const monthRecyclingData = currentRecyclingData
     .filter(v => v.length > 1)
     .reduce(function (acc, v) {
@@ -58,7 +58,8 @@ const mode = (arr) =>
     return r;
   }, []);
 
-  const dateFormatted = format(date, "Do MMMM");
+
+  const dateFormatted = format(date, "dd MMMM");
 
   return <>
       <h1>Recycling</h1>
@@ -66,7 +67,6 @@ const mode = (arr) =>
         <li>
           {date && <h3>{dateFormatted}</h3>}
           <p>
-            {" "}
             {`${prevDaycontaminated} of ${prevDaynonContaminated} bags contaminated (${Math.round(
               (prevDaycontaminated / prevDaynonContaminated) * 100
             )}%)`}{" "}
@@ -78,7 +78,6 @@ const mode = (arr) =>
         </li>
         <li>
           <h3>Last month</h3>
-        {console.log(prevAvgTotal)}
           <p>{`${Math.round(prevAvgTotal)}%`} contamination rate</p>
           <p>
             Top contaminant: <b>{topContaminant}</b>
