@@ -36,11 +36,16 @@ const mode = (arr) =>
       return acc;
     }, []);
 
+
+
   const currengAvgTotal = calculateTotalAverage(monthRecyclingData);
-  const prevAvgTotal = calculateTotalAverage(previousRecyclingData);
+  const prevAvgTotal = calculateTotalAverage(previousRecyclingData.reduce((acc, v) => {
+    acc.push([v[1], v[2]]);
+    return acc;
+  }, []));
 
   const contaminants = previousRecyclingData.reduce((acc, v) => {
-    acc.push(v[2].trim());
+    acc.push(v[3].trim());
     return acc;
   }, []);
 
@@ -55,8 +60,7 @@ const mode = (arr) =>
 
   const dateFormatted = format(date, "Do MMMM");
 
-  return (
-    <>
+  return <>
       <h1>Recycling</h1>
       <ul className="box__content">
         <li>
@@ -74,22 +78,24 @@ const mode = (arr) =>
         </li>
         <li>
           <h3>Last month</h3>
+        {console.log(prevAvgTotal)}
           <p>{`${Math.round(prevAvgTotal)}%`} contamination rate</p>
-          <p>Top contaminant: <b>{topContaminant}</b></p>
+          <p>
+            Top contaminant: <b>{topContaminant}</b>
+          </p>
         </li>
       </ul>
 
       <div className="box__results">
         <h2>
           On track to improving? {currengAvgTotal < prevAvgTotal ? <span role="img" aria-label="thumbs up">
-            👍
-                </span> : <span role="img" aria-label="thumbs down">
+              👍
+            </span> : <span role="img" aria-label="thumbs down">
               👎
-                </span>}
+            </span>}
         </h2>
       </div>
-    </>
-  )
+    </>;
 }
 
 export default Recycling;
