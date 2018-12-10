@@ -90,7 +90,7 @@ class App extends Component {
       charityData
     } = this.state;
 
-    const today = format(new Date(), "DD/MM");
+    const today = format(new Date(), "DD/MM", { awareOfUnicodeTokens: true });
 
     const currentDayData = currentRecyclingData.filter(v => {
       let [date] = v;
