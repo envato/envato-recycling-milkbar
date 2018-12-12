@@ -19,16 +19,16 @@ const mode = (arr) =>
       (arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b),
     null);
 
-    
+
     function Recycling({ previousDayData, currentRecyclingData, previousRecyclingData }) {
-      
+
     let date, prevDaynonContaminated, prevDaycontaminated;
     if (previousDayData) {
       [date, prevDaynonContaminated, prevDaycontaminated] = previousDayData;
     }
-    
+
   date = parse(date, "dd/MM", new Date());
-  
+
   const monthRecyclingData = currentRecyclingData
     .filter(v => v.length > 1)
     .reduce(function (acc, v) {
@@ -62,7 +62,7 @@ const mode = (arr) =>
   const dateFormatted = format(date, "dd MMMM");
 
   return <>
-      <h1>Recycling</h1>
+      <h1>recycling</h1>
       <ul className="box__content">
         <li>
           {date && <h3>{dateFormatted}</h3>}
@@ -87,11 +87,11 @@ const mode = (arr) =>
 
       <div className="box__results">
         <h2>
-          On track to improving? {currengAvgTotal < prevAvgTotal ? <span role="img" aria-label="thumbs up">
-              👍
-            </span> : <span role="img" aria-label="thumbs down">
-              👎
-            </span>}
+          On track to improving?<br />
+          {currengAvgTotal < prevAvgTotal ?
+            <span class="thumbs" role="img" aria-label="thumbs up">👍</span> :
+            <span class="thumbs" role="img" aria-label="thumbs down">👎</span>
+          }
         </h2>
       </div>
     </>;

@@ -12,23 +12,23 @@ function Milkbar({ charityData}) {
     );
 
   return <>
-      <h1>Milk bar charity</h1>
+      <h1>milk bar charity</h1>
       <ul className="box__content">
         <li>
           <h3>{monthName} Charity</h3>
-          <p>{charityData.name}</p>
+          <p><strong>{charityData.name}</strong></p>
         </li>
         <li>
           <h3>About</h3>
           <div className="box__summary">
-            <p>{charityData.summary}</p>
+            <p class="justify">{charityData.summary}</p>
           </div>
         </li>
       </ul>
       <div className="box__results">
-        <h2>
-          Amount raised so far: <span>${amountRaised}</span>
-        </h2>
+        <h2>Amount raised so far:</h2>
+        <h1>${amountRaised}</h1>
+
       </div>
     </>;
 }
