@@ -101,7 +101,6 @@ class App extends Component {
       return v === currentDayData[0];
     });
 
-    console.log(currentRecyclingData)
     const [previousDayData] = currentRecyclingData.slice(todayIndex - 1, todayIndex);
 
     return (
