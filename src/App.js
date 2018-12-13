@@ -101,7 +101,8 @@ class App extends Component {
       return v === currentDayData[0];
     });
 
-    const [previousDayData] = currentRecyclingData.slice(todayIndex - 2, todayIndex - 1);
+    console.log(currentRecyclingData)
+    const [previousDayData] = currentRecyclingData.slice(todayIndex - 1, todayIndex);
 
     return (
       <div className="App">

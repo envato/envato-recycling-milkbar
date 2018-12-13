@@ -21,7 +21,7 @@ function Milkbar({ charityData}) {
         <li>
           <h3>About</h3>
           <div className="box__summary">
-            <p class="justify">{charityData.summary}</p>
+            <p className="justify">{charityData.summary}</p>
           </div>
         </li>
       </ul>

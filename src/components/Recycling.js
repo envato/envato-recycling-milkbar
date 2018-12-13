@@ -1,6 +1,4 @@
 import React from 'react'
-import format from 'date-fns/format'
-import parse from 'date-fns/parse'
 
 const calculateTotalAverage = arr => {
   return arr
@@ -27,16 +25,12 @@ const mode = (arr) =>
       [date, prevDaynonContaminated, prevDaycontaminated] = previousDayData;
     }
 
-  date = parse(date, "dd/MM", new Date());
-
   const monthRecyclingData = currentRecyclingData
     .filter(v => v.length > 1)
     .reduce(function (acc, v) {
       acc.push([parseFloat(v[1]), parseFloat(v[2])]);
       return acc;
     }, []);
-
-
 
   const currengAvgTotal = calculateTotalAverage(monthRecyclingData);
   const prevAvgTotal = calculateTotalAverage(previousRecyclingData.reduce((acc, v) => {
@@ -58,14 +52,11 @@ const mode = (arr) =>
     return r;
   }, []);
 
-
-  const dateFormatted = format(date, "dd MMMM");
-
   return <>
       <h1>recycling</h1>
       <ul className="box__content">
         <li>
-          {date && <h3>{dateFormatted}</h3>}
+        <h3>{new Date().getDay === 1 ? 'Last Friday' : 'Yesterday'}</h3>
           <p>
             {`${prevDaycontaminated} of ${prevDaynonContaminated} bags contaminated (${Math.round(
               (prevDaycontaminated / prevDaynonContaminated) * 100
@@ -89,9 +80,8 @@ const mode = (arr) =>
         <h2>
           On track to improving?<br />
           {currengAvgTotal < prevAvgTotal ?
-            <span class="thumbs" role="img" aria-label="thumbs up">👍</span> :
-            <span class="thumbs" role="img" aria-label="thumbs down">👎</span>
-          }
+            <span className="thumbs" role="img" aria-label="thumbs up">👍</span> :
+            <span className="thumbs" role="img" aria-label="thumbs down">👎</span>}
         </h2>
       </div>
     </>;
