@@ -177,4 +177,4 @@ populateRecycling()
 setInterval(function() {
   console.log('refreshing...')
   populateRecycling()
-}, 1000 * 60 * 60 * 2);
+}, 1000 * 60 * 60 * 3);
